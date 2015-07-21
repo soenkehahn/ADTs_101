@@ -1,0 +1,3 @@
+
+all:
+	doctest Slides.hs
