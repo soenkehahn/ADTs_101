@@ -9,8 +9,10 @@
 -- module and doctest. This hopefully allows for
 -- an interactive talk.
 
-
 module ADTs_101 where
+
+-- $ >>> "Hello, " ++ "world"
+-- "Hello, world!"
 
 
 -- * Introduction
