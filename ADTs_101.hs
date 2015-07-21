@@ -5,8 +5,9 @@
 
 -- https://github.com/soenkehahn/ADTs_101
 
--- As an experiment this talk is using a Haskell module and doctest.
--- This hopefully allows for an interactive talk.
+-- As an experiment this talk is using a Haskell
+-- module and doctest. This hopefully allows for
+-- an interactive talk.
 
 
 module ADTs_101 where
@@ -14,7 +15,8 @@ module ADTs_101 where
 
 -- * Introduction
 
--- ADTs are a fundamental concept. More fundamental than:
+-- ADTs are a fundamental concept. More
+-- fundamental than:
 --
 -- - type classes
 -- - type class instances
@@ -28,12 +30,16 @@ module ADTs_101 where
 -- - generic programming
 -- - etc.
 
--- It's easy to get confused by the typical learning materials for Haskell and
--- think that monads are a very fundamental concept. And they are not irrelevant,
--- but they are an advanced topic. We should get a good grasp of ADTs first.
+-- It's easy to get confused by the typical
+-- learning materials for Haskell and think that
+-- monads are a very fundamental concept. And they
+-- are not irrelevant, but they are an advanced
+-- topic. We should get a good grasp of ADTs
+-- first.
 
 -- Target audience: absolute beginners
--- Ambition: provide some additional intuition for intermediate Haskellers
+-- Ambition: provide some additional intuition for
+-- intermediate Haskellers
 
 
 -- * Product Types
@@ -42,10 +48,11 @@ data Position
   = Position Int Int
   deriving (Show)
 
--- This datatype declaration creates a type `Position` *and* a constructor
--- `Position`.
+-- This datatype declaration creates a type
+-- `Position` *and* a constructor `Position`.
 
--- A product type is a cartesian product of its fields.
+-- A product type is a cartesian product of its
+-- fields.
 
 -- $ >>> Position 3 5
 -- Position 3 5
@@ -55,7 +62,8 @@ data Position
 
 -- A constructor is
 --   - atomic
---   - *has* to be used to construct a value of the type
+--   - *has* to be used to construct a value of
+--     the type
 
 mkPosition :: Int -> Position
 mkPosition n = Position n n
@@ -66,7 +74,8 @@ mkPosition n = Position n n
 
 -- * Implicit Signatures
 
--- Every datatype declaration introduces implicit values with implicit types.
+-- Every datatype declaration introduces implicit
+-- values with implicit types.
 
 -- $ Constructors:
 -- >>> :t Position
@@ -120,7 +129,8 @@ data Color
 -- >>> :t Black
 -- Black :: Color
 
--- One of the constructors *has* to be used to construct a value of the type.
+-- One of the constructors *has* to be used to
+-- construct a value of the type.
 
 
 -- * Deconstruction of Sum Types
@@ -133,12 +143,14 @@ isBlack color = case color of
 -- $ >>> isBlack White
 -- False
 
--- ghc give warnings about non-exhaustive patterns.
+-- ghc give warnings about non-exhaustive
+-- patterns.
 
 
 -- * Sum of Products
 
--- Every datatype is a combination of sum types and product types.
+-- Every datatype is a combination of sum types
+-- and product types.
 
 data Piece
   = Pawn Position Color
@@ -192,14 +204,16 @@ allowedMoves piece = case piece of
 --   - try to disallow impossible values.
 
 -- **
--- Designing good datatypes often requires some experimentation.
--- But don't worry: refactoring is cheap in Haskell!
+-- Designing good datatypes often requires some
+-- experimentation. But don't worry: refactoring
+-- is cheap in Haskell!
 
 originalPositions :: Piece -> [Position]
 originalPositions = undefined
 
 -- **
--- Datatypes are cheap, use so-called throw-away datatypes.
+-- Datatypes are cheap, use so-called throw-away
+-- datatypes.
 
 -- **
 -- Some Combinatorics:
@@ -210,11 +224,15 @@ originalPositions = undefined
 --   - recursive datastructures
 
 -- **
--- Terminology: Where do the terms Sum Type and Product Type come from?
---   - The number of possible values of a product type is equal to the *product*
---     of the number of possible values of all fields.
---   - The number of possible values of a sum type is equal to the *sum* of the
---     possible values for the type's constructors.
+-- Terminology: Where do the terms Sum Type and
+-- Product Type come from?
+--
+--   - The number of possible values of a product
+--     type is equal to the *product* of the
+--     number of possible values of all fields.
+--   - The number of possible values of a sum type
+--     is equal to the *sum* of the possible
+--     values for the type's constructors.
 
 -- **
 -- Record Update Syntax
@@ -234,8 +252,9 @@ emptyBoard = Board []
 -- Board {pieces = [Pawn (Position 1 1) Black]}
 
 -- **
--- ADTs are very powerful. For that reason some very basic types and language
--- features are implemented using ADTs:
+-- ADTs are very powerful. For that reason some
+-- very basic types and language features are
+-- implemented using ADTs:
 --   - Bool
 --   - Maybe
 --   - Error handling (Either)
