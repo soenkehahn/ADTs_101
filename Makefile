@@ -1,3 +1,3 @@
 
 all:
-	doctest Slides.hs -Wall
+	doctest ADTs_101.hs -Wall
