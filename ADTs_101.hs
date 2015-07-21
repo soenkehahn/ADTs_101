@@ -83,7 +83,10 @@ mkPosition n = Position n n
 -- >>> :t Position
 -- Position :: Int -> Int -> Position
 
--- Selectors:
+-- Sometimes it's useful to bring them to mind.
+
+
+-- * Selectors
 
 data Position2 =
   Position2 {
@@ -92,10 +95,12 @@ data Position2 =
   }
   deriving (Show)
 
--- $ >>> :t posX
--- posX :: Position2 -> Int
+-- $ >>> posY (Position2 3 5)
+-- 5
 
--- Sometimes it's useful to bring them to mind.
+-- $ implicit signatures of selectors:
+-- >>> :t posX
+-- posX :: Position2 -> Int
 
 
 -- * Deconstruction of Product Types
@@ -144,9 +149,6 @@ isBlack color = case color of
 
 -- $ >>> isBlack White
 -- False
-
--- ghc give warnings about non-exhaustive
--- patterns.
 
 
 -- * Sum of Products
@@ -226,6 +228,10 @@ originalPositions = undefined
 --   - recursive datastructures
 
 -- **
+-- ghc give warnings about non-exhaustive
+-- patterns.
+
+-- **
 -- Terminology: Where do the terms Sum Type and
 -- Product Type come from?
 --
@@ -267,3 +273,5 @@ emptyBoard = Board []
 ---------------------------
 -- Thanks for listening! --
 ---------------------------
+
+-- (I work at Zalora, we're hiring!)
