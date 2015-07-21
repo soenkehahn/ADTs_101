@@ -182,36 +182,67 @@ allowedMoves piece = case piece of
 
 -- * Random Thoughts
 
+-- **
 -- Don't model what you don't need!
 -- Unused constructors / fields are dead code too!
 
+-- **
+-- Model your domain as closely as possible:
+--   - Allow all possible values,
+--   - try to disallow impossible values.
+
+-- **
 -- Designing good datatypes often requires some experimentation.
 -- But don't worry: refactoring is cheap in Haskell!
 
 originalPositions :: Piece -> [Position]
 originalPositions = undefined
 
+-- **
+-- Datatypes are cheap, use so-called throw-away datatypes.
 
-{-
+-- **
+-- Some Combinatorics:
+--   - wrappers
+--   - enumerations
+--   - unit types
+--   - uninhabited types
+--   - recursive datastructures
 
-- Design by Experiment
-  data Sort = King | Pawn
-- Throw-Away ADTs
-  - White | Black
+-- **
+-- Terminology: Where do the terms Sum Type and Product Type come from?
+--   - The number of possible values of a product type is equal to the *product*
+--     of the number of possible values of all fields.
+--   - The number of possible values of a sum type is equal to the *sum* of the
+--     possible values for the type's constructors.
 
-- Terminology: Why product and sum
-- record update syntax
-- Queen
+-- **
+-- Record Update Syntax
 
-- combinatorics
-  - wrapper
-  - enumeration
-  - unit types
-  - uninhabited types
+data Board
+  = Board {
+    pieces :: [Piece]
+  }
+  deriving (Show)
 
--- some very basic language features are implemented using ADTs.
+emptyBoard :: Board
+emptyBoard = Board []
 
-- recursion
+-- $ >>> pieces emptyBoard
+-- []
+-- >>> emptyBoard{ pieces = [Pawn (Position 1 1) Black] }
+-- Board {pieces = [Pawn (Position 1 1) Black]}
 
-- implicit signatures
--}
+-- **
+-- ADTs are very powerful. For that reason some very basic types and language
+-- features are implemented using ADTs:
+--   - Bool
+--   - Maybe
+--   - Error handling (Either)
+--   - lists (modulo syntactic sugar)
+--   - other container types (Map, Set, etc.)
+
+
+---------------------------
+-- Thanks for listening! --
+---------------------------
