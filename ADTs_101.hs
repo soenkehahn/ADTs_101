@@ -22,7 +22,6 @@ module ADTs_101 where
 --
 -- - type classes
 -- - type class instances
--- - polymorphism
 -- - monads (!), functors
 -- - monad transformers
 -- - category theory
