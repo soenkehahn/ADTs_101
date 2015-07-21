@@ -76,39 +76,137 @@ mkPosition n = Position n n
 
 data Position2 =
   Position2 {
-    x :: Int,
-    y :: Int
+    posX :: Int,
+    posY :: Int
   }
+  deriving (Show)
 
--- $ >>> :t x
--- x :: Position2 -> Int
+-- $ >>> :t posX
+-- posX :: Position2 -> Int
 
 -- Sometimes it's useful to bring them to mind.
 
 
+-- * Deconstruction of Product Types
+
+isValid :: Position -> Bool
+isValid (Position x y) =
+  x >= 1 && x <= 8 &&
+  y >= 1 && y <= 8
+
+-- $ >>> isValid (Position 3 5)
+-- True
+-- >>> isValid (Position 0 0)
+-- False
+
+
+-- * Sum Types
+
+data Color
+  = White
+  | Black
+  deriving (Show)
+
+-- Sum types contain alternative constructors.
+
+-- $ >>> White
+-- White
+-- >>> Black
+-- Black
+
+-- $ Again, implicit signatures:
+-- >>> :t White
+-- White :: Color
+-- >>> :t Black
+-- Black :: Color
+
+-- One of the constructors *has* to be used to construct a value of the type.
+
+
+-- * Deconstruction of Sum Types
+
+isBlack :: Color -> Bool
+isBlack color = case color of
+  Black -> True
+  White -> False
+
+-- $ >>> isBlack White
+-- False
+
+-- ghc give warnings about non-exhaustive patterns.
+
+
+-- * Sum of Products
+
+-- Every datatype is a combination of sum types and product types.
+
+data Piece
+  = Pawn Position Color
+  | Rook Position Color
+  | Knight Position Color
+  | Queen Position Color QueenOrigin
+  -- ...
+  deriving (Show)
+
+data QueenOrigin
+  = Original
+  | Created
+  deriving (Show)
+
+-- $ implicit signatures again:
+-- >>> :t Pawn
+-- Pawn :: Position -> Color -> Piece
+-- >>> :t Rook
+-- Rook :: Position -> Color -> Piece
+-- >>> :t Queen
+-- Queen :: Position -> Color -> QueenOrigin -> Piece
+
+-- We use our own datatypes as fields.
+
+-- $ >>> Rook (mkPosition 1) Black
+-- Rook (Position 1 1) Black
+
+
+-- * Deconstruction
+
+allowedMoves :: Piece -> [Position]
+allowedMoves piece = case piece of
+  Pawn (Position x y) color -> case color of
+    White -> [Position x (y + 1)]
+    Black -> [Position x (y - 1)]
+  _ -> error "NYI"
+
+-- $ >>> allowedMoves (Pawn (mkPosition 4) Black)
+-- [Position 4 3]
+
+
+-- * Random Thoughts
+
+-- Don't model what you don't need --
+-- unused constructors / fields are dead code too!
+
+
+-- originalPosition :: Piece ->
+
+
 {-
-- ChessPiece (Sum Types)
-  - Color = White | Black
-  - alternatives
-  - One of the constructors *has* to be used to construct
-    a value of the type
-- Everything is a combination of these two principles:
-  - Pawn Position Color | King Position Color -- | ...
-- Deconstruction: Allowed moves
+
 - Design by Experiment
   data Sort = King | Pawn
 - Throw-Away ADTs
   - White | Black
 
-- Don't model what you don't need
 - Terminology: Why product and sum
 - record update syntax
+- Queen
 
 - combinatorics
   - wrapper
   - enumeration
   - unit types
   - uninhabited types
+
+-- some very basic language features are implemented using ADTs.
 
 - recursion
 

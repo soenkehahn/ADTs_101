@@ -1,3 +1,3 @@
 
 all:
-	doctest Slides.hs
+	doctest Slides.hs -Wall
