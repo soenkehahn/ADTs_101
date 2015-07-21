@@ -182,11 +182,14 @@ allowedMoves piece = case piece of
 
 -- * Random Thoughts
 
--- Don't model what you don't need --
--- unused constructors / fields are dead code too!
+-- Don't model what you don't need!
+-- Unused constructors / fields are dead code too!
 
+-- Designing good datatypes often requires some experimentation.
+-- But don't worry: refactoring is cheap in Haskell!
 
--- originalPosition :: Piece ->
+originalPositions :: Piece -> [Position]
+originalPositions = undefined
 
 
 {-
