@@ -227,7 +227,7 @@ originalPositions = undefined
 --   - recursive datastructures
 
 -- **
--- ghc give warnings about non-exhaustive
+-- ghc gives warnings about non-exhaustive
 -- patterns.
 
 -- **
