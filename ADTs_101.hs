@@ -5,9 +5,8 @@
 
 -- https://github.com/soenkehahn/ADTs_101
 
--- As an experiment this talk is using a Haskell
--- module and doctest. This hopefully allows for
--- an interactive talk.
+-- This workshop will be done with a text editor and `doctest`.
+-- This hopefully allows for an interactive talk. (Please, ask questions!)
 
 module ADTs_101 where
 
@@ -63,6 +62,7 @@ data Position
 
 -- A constructor is
 --   - atomic
+--   - like a named tuple
 --   - *has* to be used to construct a value of
 --     the type
 
@@ -216,7 +216,7 @@ originalPositions = undefined
 
 -- **
 -- Datatypes are cheap, use so-called throw-away
--- datatypes.
+-- datatypes. (Example: avoiding boolean blindness)
 
 -- **
 -- Some Combinatorics:
@@ -272,5 +272,3 @@ emptyBoard = Board []
 ---------------------------
 -- Thanks for listening! --
 ---------------------------
-
--- (I work at Zalora, we're hiring!)
